@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="/">Hospital Scheduler</a>
+        <nav class="nav">
+            <a href="/slots">Slots</a>
+            <a href="/book">Book</a>
+            <a href="/appointments">Appointments</a>
+            <a href="/provider/availability">Provider</a>
+            <a href="/health">Health</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <h1 class="page-title">Book Appointment</h1>
+    <p class="lead">Choose a listed slot and submit the matching doctor and service IDs.</p>
+
+    <p th:if="${param.error}" class="alert error">
+        Slot is already booked, unavailable, or does not match the selected doctor/service.
+    </p>
+
+    <section class="grid section">
+        <div class="card">
+            <h2>Open Slots</h2>
+            <ul class="list">
+                <li th:each="slot : ${slots}">
+                    Slot <strong th:text="${slot.slotId}"></strong>:
+                    Doctor <span th:text="${slot.doctorId}"></span>,
+                    Service <span th:text="${slot.serviceId}"></span>,
+                    <span th:text="${slot.date}"></span>
+                    <span th:text="${slot.startTime}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Appointment Details</h2>
+            <form action="/book" method="post" class="form-grid">
+                <label>Patient ID
+                    <input type="number" name="patientId" value="1" required>
+                </label>
+                <label>Doctor ID
+                    <input type="number" name="doctorId" value="2" required>
+                </label>
+                <label>Slot ID
+                    <input type="number" name="slotId" required>
+                </label>
+                <label>Service ID
+                    <input type="number" name="serviceId" value="1" required>
+                </label>
+                <label>&nbsp;
+                    <button type="submit">Book Appointment</button>
+                </label>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

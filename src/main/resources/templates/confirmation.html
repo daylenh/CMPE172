@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Confirmation</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="/">Hospital Scheduler</a>
+        <nav class="nav">
+            <a href="/slots">Slots</a>
+            <a href="/book">Book</a>
+            <a href="/appointments">Appointments</a>
+            <a href="/provider/availability">Provider</a>
+            <a href="/health">Health</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <section class="card">
+        <h1 class="page-title" th:if="${bookingResult != null and bookingResult.booked}">Appointment Booked Successfully</h1>
+        <h1 class="page-title" th:if="${bookingResult == null or !bookingResult.booked}">Appointment Was Not Booked</h1>
+
+        <p th:if="${bookingResult != null and bookingResult.appointment != null}">
+            Appointment ID:
+            <strong th:text="${bookingResult.appointment.appointmentID}"></strong>
+        </p>
+        <p th:if="${bookingResult != null and bookingResult.notificationSent}" class="alert success">
+            Notification status:
+            <span th:text="${bookingResult.notificationMessage}"></span>
+        </p>
+        <p th:if="${bookingResult != null and !bookingResult.notificationSent}" class="alert warning">
+            Notification status:
+            <span th:text="${bookingResult.notificationMessage}"></span>
+        </p>
+        <div class="actions">
+            <a class="button" href="/appointments">View Appointments</a>
+            <a class="button secondary" href="/book">Book Another</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>

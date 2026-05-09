@@ -25,10 +25,7 @@ spring.datasource.username=root
 spring.datasource.password=password
 ```
 
-Create the `hospital_appointment` database first, then adjust credentials in
-`src/main/resources/application.properties` if your local MySQL account differs.
-On startup, the schema initializer creates the project tables and inserts demo
-records for one patient, one doctor, one admin, two services, and sample slots.
+Create the `hospital_appointment` database first, then adjust credentials in `src/main/resources/application.properties` if your local MySQL account differs. On startup, the schema initializer creates the project tables and inserts demo records for patients, doctors, one admin, some services, and sample slots.
 
 ## Run
 
@@ -36,13 +33,6 @@ records for one patient, one doctor, one admin, two services, and sample slots.
 sh mvnw spring-boot:run
 ```
 
+or run hospitalApplication.java
+
 Open `http://localhost:8080`.
-
-## Test
-
-```bash
-sh mvnw test
-```
-
-The test profile disables the schema initializer so the Spring context test does
-not depend on local MySQL credentials.

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Appointments</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="/">Hospital Scheduler</a>
+        <nav class="nav">
+            <a href="/slots">Slots</a>
+            <a href="/book">Book</a>
+            <a href="/appointments">Appointments</a>
+            <a href="/provider/availability">Provider</a>
+            <a href="/health">Health</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <h1 class="page-title">All Appointments</h1>
+    <p class="lead">View active bookings and release booked slots when appointments are canceled.</p>
+    <p th:if="${cancelMessage}" th:text="${cancelMessage}" class="alert success"></p>
+
+    <section class="table-wrap section">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Slot</th>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="appt : ${appointments}">
+                <td th:text="${appt.appointmentID}"></td>
+                <td th:text="${appt.patientID}"></td>
+                <td th:text="${appt.doctorID}"></td>
+                <td th:text="${appt.slotID}"></td>
+                <td th:text="${appt.serviceID}"></td>
+                <td>
+                    <span class="status"
+                          th:classappend="${appt.status == 'BOOKED'} ? ' booked' : ' canceled'"
+                          th:text="${appt.status}"></span>
+                </td>
+                <td>
+                    <form th:if="${appt.status == 'BOOKED'}"
+                          th:action="@{/appointments/{id}/cancel(id=${appt.appointmentID})}"
+                          method="post">
+                        <button type="submit">Cancel</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="actions">
+        <a class="button secondary" href="/book">Book Another</a>
+        <a class="button secondary" href="/">Back Home</a>
+    </div>
+</main>
+</body>
+</html>

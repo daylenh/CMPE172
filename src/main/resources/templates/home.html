@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>Hospital Appointment System</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="/">Hospital Scheduler</a>
+        <nav class="nav">
+            <a href="/slots">Slots</a>
+            <a href="/book">Book</a>
+            <a href="/appointments">Appointments</a>
+            <a href="/provider/availability">Provider</a>
+            <a href="/health">Health</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <section class="hero">
+        <h1>Hospital Appointment System</h1>
+        <p>Browse provider availability, reserve hospital outpatient visits, and manage booked appointments with JDBC-backed transaction control.</p>
+        <div class="actions">
+            <a class="button" href="/book">Book Appointment</a>
+            <a class="button secondary" href="/slots">View Slots</a>
+        </div>
+    </section>
+
+    <section class="grid">
+        <article class="card">
+            <h2>Patients</h2>
+            <p>Find an open appointment slot and book a visit with a hospital provider.</p>
+            <a class="button secondary" href="/book">Start Booking</a>
+        </article>
+        <article class="card">
+            <h2>Providers</h2>
+            <p>Add new availability windows for doctors and services.</p>
+            <a class="button secondary" href="/provider/availability">Manage Slots</a>
+        </article>
+        <article class="card">
+            <h2>Operations</h2>
+            <p>Review appointments, cancellations, health status, and runtime metrics.</p>
+            <a class="button secondary" href="/appointments">View Appointments</a>
+        </article>
+    </section>
+</main>
+</body>
+</html>
